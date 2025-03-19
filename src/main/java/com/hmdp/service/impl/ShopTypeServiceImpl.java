@@ -14,8 +14,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.hmdp.utils.RedisConstants.LOCK_SHOP_KEY;
-
+import static com.hmdp.utils.RedisConstants.CACHE_SHOP_KEY;
 /**
  * <p>
  *  服务实现类
@@ -31,7 +30,7 @@ public class ShopTypeServiceImpl extends ServiceImpl<ShopTypeMapper, ShopType> i
 
     @Override
     public List<ShopType> queryTypeList() {
-        String key = LOCK_SHOP_KEY;
+        String key = CACHE_SHOP_KEY;
         //1.从redis中查询店铺类型缓存
         List<String> list = stringRedisTemplate.opsForList().range(key, 0, -1);
         List<ShopType> shopTypeList = new ArrayList<>();
